@@ -18,10 +18,8 @@ class DragosPortalAPI:
 
 
     def get_wv_reports(self):
-        headers = self.api_headers
-
         # https://portal.dragos.com/api/v1/doc/#!/products/Api_V1_Products_index_get_1
-        r = requests.get("https://portal.dragos.com:443/api/v1/products?page=1&page_size=500", headers=headers)
+        r = requests.get("https://portal.dragos.com:443/api/v1/products?page=1&page_size=500", headers=self.api_headers)
         reports = r.json()
         #print(report)
 
@@ -29,10 +27,8 @@ class DragosPortalAPI:
 
 
     def report_has_indicators(self, report_id):
-        headers = self.api_headers
-
         # https://portal.dragos.com/api/v1/doc/#!/indicators/Api_V1_Indicators_index_get_0
-        r = requests.get("https://portal.dragos.com:443/api/v1/indicators?serial=" + report_id, headers=headers)
+        r = requests.get("https://portal.dragos.com:443/api/v1/indicators?serial=" + report_id, headers=self.api_headers)
         indicators = r.json()
 
         if indicators["total"] > 0:
