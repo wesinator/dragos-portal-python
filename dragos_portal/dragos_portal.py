@@ -17,7 +17,7 @@ class DragosPortalAPI:
         }
 
 
-    def get_wv_reports(self):
+    def get_intel_reports(self):
         # https://portal.dragos.com/api/v1/doc/#!/products/Api_V1_Products_index_get_1
         r = requests.get("https://portal.dragos.com:443/api/v1/products?page=1&page_size=500", headers=self.api_headers)
         reports = r.json()
@@ -37,19 +37,19 @@ class DragosPortalAPI:
             return False
 
 
-def dragosportal_api_config():
-    # get wv API creds from py INI config file (no quotes in config)
-    wv_config = RawConfigParser()
+def dragosportal_api_config(config_filename):
+    # get API creds from py INI config file (no quotes in config)
+    portal_config = RawConfigParser()
     try:
-        wv_config.read("dragos_portal.cfg")
+        portal_config.read(config_filename)
     except FileNotFoundError:
-        print("missing worldview config file")
+        print("missing Dragos portal config file")
         exit(1)
 
     try:
-        access_token = wv_config.get("worldview", "access_token")
-        access_key = wv_config.get("worldview", "access_key")
+        access_token = portal_config.get("worldview", "access_token")
+        access_key = portal_config.get("worldview", "access_key")
         return DragosPortalAPI(access_token, access_key)
     except:
-        print("error reading atlassian API config")
+        print("error reading Dragos API config")
         exit(1)

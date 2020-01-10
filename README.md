@@ -8,9 +8,11 @@ A simple Python wrapper client for the Dragos portal API
 
 ```python
 import dragos_portal
-dragos_portal_api = dragos_portal.dragosportal_api_config()
 
-dragos_portal_api.get_wv_reports()
+# read API config from file
+dragos_portal_api = dragos_portal.dragosportal_api_config("dragos_portal.cfg")
+
+dragos_portal_api.get_intel_reports()
 ```
 
 ## Reference docs
