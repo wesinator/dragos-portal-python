@@ -47,8 +47,8 @@ def dragosportal_api_config(config_filename):
         exit(1)
 
     try:
-        access_token = portal_config.get("worldview", "access_token")
-        access_key = portal_config.get("worldview", "access_key")
+        access_token = portal_config.get("dragos portal", "access_token")
+        access_key = portal_config.get("dragos portal", "access_key")
         return DragosPortalAPI(access_token, access_key)
     except:
         print("error reading Dragos API config")

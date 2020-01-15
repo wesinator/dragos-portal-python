@@ -6,6 +6,14 @@ A simple Python wrapper client for the Dragos portal API
 
 ## Usage
 
+`dragos_portal.cfg`:
+```ini
+[dragos portal]
+access_token = <Hex token>
+access_key = <Base64 key>
+```
+no quotes in config
+
 ```python
 import dragos_portal
 
