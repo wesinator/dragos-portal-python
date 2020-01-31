@@ -37,6 +37,14 @@ class DragosPortalAPI:
             return False
 
 
+    def lookup_indicator(self, value, type=""):
+        url = "https://portal.dragos.com:443/api/v1/indicators?value=" + value
+        if type:
+            url += "&type=" + type
+        r = requests.get(url)
+        return r.json()
+
+
 def dragosportal_api_config(config_filename):
     # get API creds from py INI config file (no quotes in config)
     portal_config = RawConfigParser()
