@@ -18,7 +18,7 @@ no quotes in config
 import dragos_portal
 
 # read API config from file
-dragos_portal_api = dragos_portal.dragosportal_api_config("dragos_portal.cfg")
+dragos_portal_api = dragos_portal.load_api_config("dragos_portal.cfg")
 
 dragos_portal_api.get_intel_reports()
 ```

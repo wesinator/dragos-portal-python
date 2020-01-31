@@ -19,7 +19,7 @@ class DragosPortalAPI:
 
     def get_intel_reports(self):
         # https://portal.dragos.com/api/v1/doc/#!/products/Api_V1_Products_index_get_1
-        r = requests.get("https://portal.dragos.com:443/api/v1/products?page=1&page_size=500", headers=self.api_headers)
+        r = requests.get("https://portal.dragos.com/api/v1/products?page=1&page_size=500", headers=self.api_headers)
         reports = r.json()
         #print(report)
 
@@ -28,7 +28,7 @@ class DragosPortalAPI:
 
     def report_has_indicators(self, report_id):
         # https://portal.dragos.com/api/v1/doc/#!/indicators/Api_V1_Indicators_index_get_0
-        r = requests.get("https://portal.dragos.com:443/api/v1/indicators?serial=" + report_id, headers=self.api_headers)
+        r = requests.get("https://portal.dragos.com/api/v1/indicators?serial=" + report_id, headers=self.api_headers)
         indicators = r.json()
 
         if indicators["total"] > 0:
@@ -38,14 +38,14 @@ class DragosPortalAPI:
 
 
     def lookup_indicator(self, value, type=""):
-        url = "https://portal.dragos.com:443/api/v1/indicators?value=" + value
+        url = "https://portal.dragos.com/api/v1/indicators?value=" + value
         if type:
             url += "&type=" + type
         r = requests.get(url)
         return r.json()
 
 
-def dragosportal_api_config(config_filename):
+def load_api_config(config_filename):
     # get API creds from py INI config file (no quotes in config)
     portal_config = RawConfigParser()
     try:
