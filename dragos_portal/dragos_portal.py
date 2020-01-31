@@ -41,7 +41,7 @@ class DragosPortalAPI:
         url = "https://portal.dragos.com/api/v1/indicators?value=" + value
         if type:
             url += "&type=" + type
-        r = requests.get(url)
+        r = requests.get(url, headers=self.api_headers)
         return r.json()
 
 
