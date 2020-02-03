@@ -34,15 +34,12 @@ class DragosPortalAPI:
         return reports
 
 
-    def report_has_indicators(self, report_id):
+    def get_report_indicators(self, report_id):
         # https://portal.dragos.com/api/v1/doc/#!/indicators/Api_V1_Indicators_index_get_0
         r = requests.get("https://portal.dragos.com/api/v1/indicators?serial=" + report_id, headers=self.api_headers)
         indicators = r.json()
 
-        if indicators["total"] > 0:
-            return True
-        elif indicators["total"] == 0:
-            return False
+        return indicators
 
 
     def lookup_indicator(self, value, type=""):
