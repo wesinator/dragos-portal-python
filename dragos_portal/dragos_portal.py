@@ -36,7 +36,7 @@ class DragosPortalAPI:
 
     def get_report_indicators(self, report_id):
         # https://portal.dragos.com/api/v1/doc/#!/indicators/Api_V1_Indicators_index_get_0
-        r = requests.get("https://portal.dragos.com/api/v1/indicators?serial=" + report_id, headers=self.api_headers)
+        r = requests.get("https://portal.dragos.com/api/v1/indicators?page_size=1000&serial=" + report_id, headers=self.api_headers)
         indicators = r.json()
 
         return indicators
