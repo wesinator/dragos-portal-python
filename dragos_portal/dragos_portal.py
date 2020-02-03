@@ -19,9 +19,17 @@ class DragosPortalAPI:
 
     def get_intel_reports(self):
         # https://portal.dragos.com/api/v1/doc/#!/products/Api_V1_Products_index_get_1
-        r = requests.get("https://portal.dragos.com/api/v1/products?page=1&page_size=500", headers=self.api_headers)
-        reports = r.json()
-        #print(report)
+        reports = []
+
+        page = 1
+        total_pages = page
+        while page <= total_pages:
+            r = requests.get("https://portal.dragos.com/api/v1/products?page={}&page_size=500".format(page), headers=self.api_headers)
+            data = r.json()
+            total_pages = data["total_pages"]
+            page += 1
+
+            reports += data["products"]
 
         return reports
 
