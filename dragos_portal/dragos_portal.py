@@ -5,8 +5,8 @@ import requests
 
 from configparser import RawConfigParser
 
-# auth object for Dragos portal API - basically an API wrapper/implementation
 class DragosPortalAPI:
+    """auth object for Dragos portal API - basically an API wrapper/implementation"""
     def __init__(self, access_token, access_key):
         self.access_token = access_token
         self.access_key = access_key
@@ -23,7 +23,7 @@ class DragosPortalAPI:
 
 
     def get_intel_reports(self):
-        # https://portal.dragos.com/api/v1/doc/#!/products/Api_V1_Products_index_get_1
+        """https://portal.dragos.com/api/v1/doc/#!/products/Api_V1_Products_index_get_1"""
         reports = []
 
         page = 1
@@ -40,11 +40,9 @@ class DragosPortalAPI:
 
 
     def get_report_indicators(self, report_id):
-        # https://portal.dragos.com/api/v1/doc/#!/indicators/Api_V1_Indicators_index_get_0
+        """https://portal.dragos.com/api/v1/doc/#!/indicators/Api_V1_Indicators_index_get_0"""
         r = requests.get("https://portal.dragos.com/api/v1/indicators?page_size=1000&serial=" + report_id, headers=self.api_headers)
-        indicators = r.json()
-
-        return indicators
+        return r.json()
 
 
     def lookup_indicator(self, value, type=""):
@@ -56,7 +54,7 @@ class DragosPortalAPI:
 
 
 def load_api_config(config_filename):
-    # get API creds from py INI config file (no quotes in config)
+    """get API creds from py INI config file (no quotes in config)"""
     portal_config = RawConfigParser()
     try:
         portal_config.read(config_filename)
