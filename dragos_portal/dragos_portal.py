@@ -17,6 +17,11 @@ class DragosPortalAPI:
         }
 
 
+    def get_intel_report(self, report_id):
+        r = requests.get("https://portal.dragos.com/api/v1/products/" + report_id, headers=self.api_headers)
+        return r.json()
+
+
     def get_intel_reports(self):
         # https://portal.dragos.com/api/v1/doc/#!/products/Api_V1_Products_index_get_1
         reports = []
