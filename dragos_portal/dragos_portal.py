@@ -45,10 +45,10 @@ class DragosPortalAPI:
         return r.json()
 
 
-    def lookup_indicator(self, value, type=""):
+    def lookup_indicator(self, value, indicator_type=""):
         url = "https://portal.dragos.com/api/v1/indicators?value=" + value
-        if type:
-            url += "&type=" + type
+        if indicator_type:
+            url += "&type=" + indicator_type
         r = requests.get(url, headers=self.api_headers)
         return r.json()
 
