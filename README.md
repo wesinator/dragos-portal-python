@@ -1,3 +1,7 @@
+**Note:** This is a deprecated project
+
+Officially supported API client SDK is at https://github.com/dragosinc/customer-portal-sdks
+
 # Dragos Portal Python API
 
 A simple Python wrapper client for the Dragos portal API
