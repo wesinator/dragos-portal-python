@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """A simple Python wrapper client for the Dragos portal API"""
-import requests
-
 from configparser import RawConfigParser
+
+import requests
 
 class DragosPortalAPI:
     """auth object for Dragos portal API - basically an API wrapper/implementation"""
@@ -22,14 +22,17 @@ class DragosPortalAPI:
         return r.json()
 
 
-    def get_intel_reports(self):
+    def get_intel_reports(self, updated_after=""):
         """https://portal.dragos.com/api/v1/doc/#!/products/Api_V1_Products_index_get_1"""
         reports = []
 
         page = 1
         total_pages = page
         while page <= total_pages:
-            r = requests.get("https://portal.dragos.com/api/v1/products?page={}&page_size=500".format(page), headers=self.api_headers)
+            url = "https://portal.dragos.com/api/v1/products?page={}&page_size=500".format(page)
+            if updated_after:
+                url += "&updated_after=" + updated_after
+            r = requests.get(url, headers=self.api_headers)
             data = r.json()
             total_pages = data["total_pages"]
             page += 1
